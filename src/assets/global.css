@@ -1,0 +1,385 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #213547;
+  background-color: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom component styles */
+@layer components {
+  .text-primary {
+    @apply text-blue-600;
+  }
+
+  .form-label {
+    @apply block text-gray-700 font-medium mb-1;
+  }
+
+  .form-label.required:after {
+    content: "*";
+    @apply text-red-500 ml-1;
+  }
+
+  .error-message {
+    @apply text-red-500 text-sm mt-1;
+  }
+}
+
+/* Ant Design customizations */
+.ant-form-item-label
+  > label.ant-form-item-required:not(
+    .ant-form-item-required-mark-optional
+  )::before {
+  display: none !important;
+}
+
+.ant-form-item-label
+  > label.ant-form-item-required:not(
+    .ant-form-item-required-mark-optional
+  )::after {
+  display: inline-block;
+  margin-left: 4px;
+  color: #ff4d4f;
+  font-size: 14px;
+  font-family: SimSun, sans-serif;
+  line-height: 1;
+  content: "*";
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+/* Add responsive design for the survey steps */
+.custom-steps .ant-steps-item-container {
+  display: flex;
+  align-items: center;
+}
+
+.custom-steps .ant-steps-item-icon {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  transition: all 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-steps .ant-steps-item-active .ant-steps-item-icon {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.custom-steps .ant-steps-item-title {
+  font-weight: 600;
+}
+
+.custom-steps .ant-steps-item-description {
+  max-width: 140px;
+}
+
+/* Responsive steps */
+@media (max-width: 768px) {
+  .custom-steps .ant-steps-item-description {
+    max-width: none;
+  }
+}
+
+/* Improve form styling */
+.ant-form-item-label > label {
+  font-weight: 500;
+}
+
+.ant-form-item-explain-error {
+  margin-top: 4px;
+  font-size: 0.85rem;
+}
+
+/* Add fancy animation for required badges */
+@keyframes pulse-error {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.ant-badge-status-error::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #ff4d4f;
+  animation: pulse-error 2s infinite;
+  z-index: -1;
+}
+
+/* Print styles */
+@media print {
+  .contract-content {
+    font-size: 12pt;
+  }
+
+  .contract-content h2 {
+    font-size: 16pt;
+    margin-bottom: 20pt;
+  }
+
+  .contract-content h4 {
+    font-size: 14pt;
+    margin-top: 16pt;
+    margin-bottom: 8pt;
+  }
+
+  .contract-content p {
+    margin-bottom: 10pt;
+  }
+
+  .contract-content .signature-area {
+    margin-top: 40pt;
+  }
+
+  /* Hide UI elements during print */
+  .ant-card,
+  .ant-steps,
+  .ant-float-btn,
+  .ant-checkbox-wrapper {
+    display: none !important;
+  }
+
+  /* Only show the contract content */
+  .contract-content {
+    display: block !important;
+    page-break-inside: avoid;
+  }
+}
+
+/* Enhanced form styles */
+.questionnaire-form .ant-card {
+  transition: all 0.3s ease;
+}
+
+.questionnaire-form .ant-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.questionnaire-form .ant-input,
+.questionnaire-form .ant-picker {
+  transition: all 0.3s ease;
+}
+
+.questionnaire-form .ant-input:focus,
+.questionnaire-form .ant-picker:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+}
+
+.questionnaire-form .ant-btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.questionnaire-form .ant-btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+}
+
+.questionnaire-form .ant-progress-bg {
+  background: linear-gradient(90deg, #3b82f6, #10b981);
+}
+
+.export-modal .ant-modal-content {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.export-modal .ant-modal-header {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  border: none;
+  color: white;
+}
+
+.export-modal .ant-modal-title {
+  color: white;
+}
+
+.section-gradient-blue {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.section-gradient-green {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.section-gradient-purple {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+/* Modern animations */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Modern float buttons */
+.modern-float-buttons .ant-float-btn {
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modern-float-buttons .ant-float-btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+}
+
+.modern-float-buttons .ant-float-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Glassmorphism effects */
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Modern step styles - override Ant Design */
+.custom-steps .ant-steps-item-container {
+  padding: 0 !important;
+}
+
+.custom-steps .ant-steps-item {
+  overflow: visible !important;
+}
+
+.custom-steps .ant-steps-item-icon {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.custom-steps .ant-steps-item-tail::after {
+  display: none !important;
+}
+
+/* Custom scrollbar for contract display */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+}
+
+/* Enhanced contract display */
+.contract-content .ant-card {
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.contract-content .ant-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Modern card hover effects */
+.questionnaire-form .ant-card,
+.modern-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.questionnaire-form .ant-card:hover,
+.modern-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Improved typography for contract */
+.contract-content h2,
+.contract-content h3,
+.contract-content h4 {
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.contract-content p {
+  line-height: 1.7;
+  color: #374151;
+}
+
+/* Enhanced button styles */
+.modern-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.modern-button:hover::before {
+  left: 100%;
+}
